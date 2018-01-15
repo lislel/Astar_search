@@ -60,12 +60,11 @@ def shortest_path(M,start,goal):
     for place in neighbor:
         gScore[place] = cost(place, M, start)
     
-    #set flag for goal being found to false. 
-    goal_achieved = False
+
 
     
 #function
-    while goal_achieved == False:
+        while len(openSet) > 0:
         
         #get the lowest scoring node
         current_t = fScore.get()
@@ -73,7 +72,6 @@ def shortest_path(M,start,goal):
 
         #if the current node is equal to the goal node, return the path to get to goal and break
         if current == goal:
-            goal_achieved = True
             return reconstruct_path(cameFrom, current)
 
         #otherwise, remove the current node from the open set and add it to the closed set
