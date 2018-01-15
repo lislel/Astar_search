@@ -93,14 +93,14 @@ def shortest_path(M,start,goal):
                 openSet.add(place)
             #calcualte the tentative gscore of expanding to this node, by adding cost of current node from start, and the distance between current node and THIS neighborng node
             tent_gScore = gScore[current] + cost(current, M, place)
-            
-            try:
-                #if the gScore has already been calculated, compare to previous gScore. If the tentative gScore is greater than the current gScore, this path is not efficient as the previous path to get to this node. So, we should skip this path, and move on to the next neighbor. 
-                if tent_gScore > gScore[place]:
-                    continue
-            except:
-                #if the gScore for this place hasn't already been calculated, set the Gscore as the Gscore for this node
+
+            # if the gScore has already been calculated, compare to previous gScore. If the tentative gScore is greater than the current gScore, this path is not efficient as the previous path to get to this node. So, we should skip this path, and move on to the next neighbor.
+            if place in gScore.keys() and tent_gScore > gScore[place]:
+                continue
+            else:
+                # if the gScore for this place hasn't already been calculated, set the Gscore as the Gscore for this node
                 gScore[place] = tent_gScore
+                # for each node in neighbor, set current as where the node came from
             #for each node in neighbor, set current as where the node came from
             cameFrom[place] = current
             gScore[place] = tent_gScore
